@@ -1,54 +1,54 @@
+
 Estadio(ID-Estadio,Nome, Capacidade, Localizacao_Rua, Localizacao_Bairro, Localizacao_Cidade, Localizacao_CEP)
 
 Copa_do_mundo(Ano, Pais-sede)
 
 Mascote(Nome)
 
+Ranking(ID,posicao)
+
 Selecao(Pais, Nome_tecnico)
 
-Alcunha(Pais, Alcunha)
-        Pais → Selecao(Pais)
 
-Jogador(Pais, N-camisa, K-capitao, Posicao, Idade, Nome)
-        Pais → Selecao(Pais)
-        K-capitao → Jogador(Pais, N-camisa)
+Alcunha(Pais, Alcunha)
+	Pais → Selecao(Pais)
+
+Jogador(Pais, N-camisa, Capitao, Posicao, Idade, Nome)
+	Pais → Selecao(Pais)
+	Capitao -> Jogador(Pais,N-camisa)
+	
+
 
 Partida(CodPartida, Pais-visitante!, Pais-mandante!, Publico, Placar, DataHora)
-        Pais-visitante → Selecao(Pais)
-        Pais-mandante → Selecao(Pais)
+	Pais-visitante → Selecao(Pais)
+	Pais-mandante → Selecao(Pais)
+
 
 Arbitro(ID-arbitro, Nome, Nacionalidade)
 
-VAR(Id-arbitro)
-        Id-arbitro → Arbitro(ID-arbitro)
 
 Arbitro_principal(Id-arbitro)
-        Id-arbitro -> Arbitro(Id-arbitro)
+	Id-arbitro -> Arbitro(Id-arbitro)
 
-Bandeirinha(Id-arbitro)
-        Id-arbitro -> Arbitro(Id-arbitro)
+Comanda(Cod-Partida, Id-arbitro)
+	Codigo-Partida → Partida(CodPartida)
+	Id-arbitro → Arbitro_principal(ID-arbitro)
 
-Quarto_arbitro(Id-arbitro)
-        ID-arbitro -> Arbitro(Id-arbitro)
-
-Comanda(CodPartida, Id-arbitro)
-        Codigo_Partida → Partida(CodPartida)
-        Id-arbitro → Arbitro_principal(ID-arbitro)
-
-Sedia(ID,Ano)
-        Id_estadio → Estadio(ID-Estadio)
-        Ano → Copa_do_mundo(Ano)
+Sedia(Id-estadio,Ano)
+	Id-estadio → Estadio(ID-Estadio)
+	Ano → Copa_do_mundo(Ano)
 
 Mascote_Copa(Ano, [Nome]!, Pais_sede)
 
-Tem(Ano,Pais,posicao,id!)
-Ano -> copa_do_mundo(Ano)
-Pais -> selecao(Pais)
+Tem(Ano,Pais,Id_ranking!)
+Ano → Copa_do_mundo(Ano)
+Pais → Selecao(Pais)
+Id_ranking → Ranking(Id_ranking)
 
 Possui(Ano, Id-arbitro)
-        Ano → Copa_do_mundo(Ano)
-        Id-arbitro → Arbitro(ID-arbitro)
+	Ano → Copa_do_mundo(Ano)
+	Id-arbitro → Arbitro(ID-arbitro)
 
-Punicao(Cod-partida, Id-arbitro ,Pais , N-camisa, CartaoAm, CartaoVerm)
-         (Cod-partida, Id-arbitro) → Comanda(CodPartida, ID-arbitro)
-         (Pais, N-camisa) → Jogador(Pais, N-camisa)
+Punicao(Cod-partida, Id-arbitro ,Pais , N-camisa, cor_cartao)
+	 (Cod-partida, Id-arbitro-principal) → Comanda(CodPartida, ID-arbitro-principal)
+	 (Pais, N-camisa) → Jogador(Pais, N-camisa)
