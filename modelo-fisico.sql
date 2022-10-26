@@ -372,7 +372,7 @@ insert into SEDIA (ID_ESTADIO, ANO) values (34,1986);
 -- POVOAMENTO MASCOTE_COPA -- rel
 -----------------------------------------------------
 
-insert into MASCOTE_COPA (ANO, NOME, PAIS_SEDE) values (1994, 'Striker', 'United States);
+insert into MASCOTE_COPA (ANO, NOME, PAIS_SEDE) values (1994, 'Striker', 'United States');
 insert into MASCOTE_COPA (ANO, NOME, PAIS_SEDE) values (1986, 'Pique', 'Mexico');
 insert into MASCOTE_COPA (ANO, NOME, PAIS_SEDE) values (2002, 'Spheriks', 'Japan');
 insert into MASCOTE_COPA (ANO, NOME, PAIS_SEDE) values (2018, 'Zabivaka', 'Russia');
